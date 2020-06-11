@@ -1,13 +1,18 @@
 
 package es.albarregas.controllers;
 
+import es.albarregas.DAO.IAlumnosDAO;
+import es.albarregas.DAOFACTORY.DAOFactory;
+import es.albarregas.beans.Alumno;
+import es.albarregas.beans.Equipo;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -16,69 +21,55 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Realizar", urlPatterns = {"/Realizar"})
 public class Realizar extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Realizar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Realizar at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = "";
+        if (request.getParameter("operacion") != null) {
+            switch (request.getParameter("operacion")) {
+                case "insertarAlumno":
+                    insertarAlumno(request, response);
+                    url = "";
+                    break;
+            }
+        }
+
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    public void insertarAlumno(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession sesion = request.getSession();
+        Alumno alum = new Alumno();
+        Equipo equipo = new Equipo();
+        alum.setNombre(request.getParameter("nombreAlum"));
+        alum.setGrupo(request.getParameter("grupoAlum"));
+
+        DAOFactory daof = DAOFactory.getDAOFactory(1);
+        IAlumnosDAO idao = daof.getAlumnosDAO();
+        equipo.setIdEquipo(Integer.parseInt(request.getParameter("equipoAlumno")));
+        alum.setEquipo(equipo);
+
+        idao.insertarAlumno(alum);
+
+        ArrayList<Alumno> alumnos = (ArrayList<Alumno>) sesion.getAttribute("alumno");
+        alumnos.add(alum);
+        sesion.setAttribute("alumno", alumnos);
+        
+    }
+    
+    public void modificarAlumno(HttpServletRequest request, HttpServletResponse response){
+        Alumno alum = new Alumno();
+        alum.setNombre(request.getParameter("nombreAlum"));
+        alum.setGrupo(request.getParameter("grupoAlum"));
+        
+        DAOFactory daof = DAOFactory.getDAOFactory(1);
+        IAlumnosDAO idao = daof.getAlumnosDAO();
+        
+        idao.actualizarAlumno(alum);
+    }
+
+    }
+
+
 
 }
