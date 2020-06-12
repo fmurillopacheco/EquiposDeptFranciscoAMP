@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Francisco_Antonio
  */
+
 @WebServlet(name = "Realizar", urlPatterns = {"/Realizar"})
 public class Realizar extends HttpServlet {
 
@@ -46,8 +47,8 @@ public class Realizar extends HttpServlet {
 
         DAOFactory daof = DAOFactory.getDAOFactory(1);
         IAlumnosDAO idao = daof.getAlumnosDAO();
-        equipo.setIdEquipo(Integer.parseInt(request.getParameter("equipoAlumno")));
-        alum.setEquipo(equipo);
+        equipo.setIdEquipo((byte) Integer.parseInt(request.getParameter("equipoAlumno")));
+
 
         idao.insertarAlumno(alum);
 
@@ -67,9 +68,4 @@ public class Realizar extends HttpServlet {
         
         idao.actualizarAlumno(alum);
     }
-
-    }
-
-
-
 }

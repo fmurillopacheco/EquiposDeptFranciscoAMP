@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Francisco_Antonio
  */
+
 @WebServlet(name = "Operacion", urlPatterns = {"/Operacion"})
 public class Operacion extends HttpServlet {
 
@@ -37,10 +38,9 @@ public class Operacion extends HttpServlet {
                     break;
                 case "actualizarAlumno":
                     DAOFactory daof = DAOFactory.getDAOFactory(1);
-            IAlumnosDAO odao = daof.getAlumnosDAO();
-            ArrayList<Alumno> alumnos = odao.leerAlumnos();
-
-            request.setAttribute("alumnos", alumnos);
+                    IAlumnosDAO odao = daof.getAlumnosDAO();
+                    ArrayList<Alumno> alumnos = odao.leerAlumnos();
+                    request.setAttribute("alumnos", alumnos);
                     url = "JSP/actualizar/alumno/leerActualizar.jsp";
                     break;
                 case "actualizarEquipo":
@@ -129,7 +129,7 @@ public class Operacion extends HttpServlet {
             
         }
     }
-    }
-
-
 }
+
+
+

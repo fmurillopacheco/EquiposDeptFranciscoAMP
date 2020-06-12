@@ -12,10 +12,11 @@ public class Alumno {
     private String nombre;
     private String apellidos;
     private String nif;
+    private Grupo idGrupo;
     private Date fechaNacimiento;
     private String sexo;
     private String email;
-    private byte idEquipo;
+    private Equipo idEquipo;
 
     public int getIdAlumno() {
         return idAlumno;
@@ -73,17 +74,23 @@ public class Alumno {
         this.email = email;
     }
 
-    public byte getIdEquipo() {
+    public Grupo getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(Grupo idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public Equipo getIdEquipo() {
         return idEquipo;
     }
 
-    public void setIdEquipo(byte idEquipo) {
+    public void setIdEquipo(Equipo idEquipo) {
         this.idEquipo = idEquipo;
     }
 
-    public void setGrupo(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
     
 }
