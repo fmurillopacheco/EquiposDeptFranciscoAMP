@@ -26,7 +26,7 @@ public class EquiposDAO implements IEquiposDAO{
 
             while (resultado.next()) {
                 Equipo equipo = new Equipo();
-                equipo.setIdEquipo((byte) resultado.getInt("idEquipo"));
+                equipo.setIdEquipo(resultado.getShort("idEquipo"));
                 equipo.setMarca(resultado.getString("marca"));
                 equipo.setNumSerie(resultado.getString("numSerie"));
                 lista.add(equipo);
@@ -62,12 +62,12 @@ public class EquiposDAO implements IEquiposDAO{
                 Alumno alumno = new Alumno();
                 ArrayList<Alumno> alumnos = new ArrayList<>();
                 equipo.setMarca(resultado.getString("marca"));
-                equipo.setIdEquipo((byte) resultado.getInt("idEquipo"));
+                equipo.setIdEquipo(resultado.getShort("idEquipo"));
                 equipo.setNumSerie(resultado.getString("numSerie"));
                 alumno.setNombre(resultado.getString("nombre"));
                 alumno.setNombre(resultado.getString("grupo"));
                 alumnos.add(alumno);
-                //equipo.setAlumnos(alumnos);//arrayList
+                equipo.setAlumnos(alumnos);//arrayList
                 lista.add(equipo);
             }
 
@@ -145,7 +145,7 @@ public class EquiposDAO implements IEquiposDAO{
 
             while (resultado.next()) {
                
-                equipo.setIdEquipo((byte) resultado.getInt("idEquipo"));
+                equipo.setIdEquipo(resultado.getShort("idEquipo"));
                 equipo.setMarca(resultado.getString("marca"));
                 equipo.setNumSerie(resultado.getString("numSerie"));
             }

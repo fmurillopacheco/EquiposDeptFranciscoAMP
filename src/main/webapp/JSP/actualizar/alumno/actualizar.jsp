@@ -14,9 +14,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        
+    <!-- Función  -->
+    <script src="js/validacionFormulario.js"></script>        
 
-        <title>Actualizar Datos.</title>
         <title>Actualizar Datos de Alumnos.</title>
     </head>
     <body>
@@ -27,22 +27,19 @@
                     <label for="id">IdAlumno: ${usuario.id}</label>
                 </div>
                 <div class="form-group">
-                    <label for="nombreUsu">Nombre:</label>
-                    <input type="text" class="form-control" placeholder="Introduce nombre del alumno." name="nombre" value="${usuario.nombre}">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" placeholder="Introduce nombre del alumno." name="nombre" value="${alumno.nombre}" required>
                     <div class="valid-feedback">OK.</div>
                     <div class="invalid-feedback">Por favor, rellena este campo.</div>
                 </div>
                 <div class="form-group">
                     <label for="apellidos">Apellidos:</label>
-                    <input type="text" class="form-control" placeholder="Introduce Apellidos." name="apellidos" value="${usuario.apellidos}">
+                    <input type="text" class="form-control" placeholder="Introduce Apellidos." name="apellidos" value="${alumno.apellidos}">
                     <div class="valid-feedback">OK.</div>
                     <div class="invalid-feedback">Por favor, rellena este campo.</div>
                 </div> 
                 <div class="form-group">
-                    <label for="idGrupo">IdGrupo:</label>
-                    <input type="text" class="form-control" placeholder="Introduce identificaci&oacute;n del grupo." name="idGrupo" value="${usuario.idGrupo}">
-                    <div class="valid-feedback">OK.</div>
-                    <div class="invalid-feedback">Por favor, rellena este campo.</div>
+                    <label for="idGrupo">IdGrupo: ${alumno.idGrupo}</label>
                 </div>
                 <div class="form-group">
                     <label for="apellidos">NIF/NIE:</label>
@@ -72,25 +69,6 @@
     
             </form>
         </div>
-<script>
-            // Disable form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Get the forms we want to add validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
+
     </body>
 </html>

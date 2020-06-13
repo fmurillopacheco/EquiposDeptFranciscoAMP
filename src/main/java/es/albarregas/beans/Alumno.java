@@ -14,7 +14,7 @@ public class Alumno {
     private String nif;
     private Grupo idGrupo;
     private Date fechaNacimiento;
-    private String sexo;
+    private enum sexo {Hombre,Mujer,Otro}
     private String email;
     private Equipo idEquipo;
 
@@ -56,14 +56,6 @@ public class Alumno {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getEmail() {

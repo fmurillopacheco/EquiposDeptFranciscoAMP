@@ -2,6 +2,8 @@
 package es.albarregas.DAO;
 
 import es.albarregas.beans.Alumno;
+import es.albarregas.beans.Equipo;
+import es.albarregas.beans.Grupo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,9 +32,7 @@ public class AlumnosDAO implements IAlumnosDAO {
                 alumno.setApellidos(resultado.getString("apellidos"));
                 alumno.setNif(resultado.getString("nif"));
                 alumno.setFechaNacimiento(resultado.getDate("fechaNacimiento"));
-                alumno.setSexo(resultado.getString("sexo"));
                 alumno.setEmail(resultado.getString("email"));
-                alumno.setIdEquipo(resultado.getByte("idEquipo"));
                 lista.add(alumno);
             }
 
@@ -49,7 +49,7 @@ public class AlumnosDAO implements IAlumnosDAO {
     @Override
     public ArrayList<Alumno> leerAlumnosSinEquipo() {
         ArrayList<Alumno> lista = new ArrayList();
-        String consulta = "select nombre, idAlumno from alumnos where idEquipo is null;";
+        String consulta = "select nombre, apellidos from alumnos where idEquipo is null;";
 
         try {
             Statement sentencia = ConnectionFactory.getConnection().createStatement();
@@ -58,7 +58,7 @@ public class AlumnosDAO implements IAlumnosDAO {
             while (resultado.next()) {
                 Alumno alumno = new Alumno();
                 alumno.setNombre(resultado.getString("nombre"));
-                alumno.setGrupo(resultado.getString("idAlumno"));
+                alumno.setApellidos(resultado.getString("apellidos"));
                 lista.add(alumno);
             }
 
@@ -75,7 +75,7 @@ public class AlumnosDAO implements IAlumnosDAO {
     @Override
     public ArrayList<Alumno> leerAlumnosYEquipoAsociado() {
         ArrayList<Alumno> lista = new ArrayList();
-        String consulta = "Select a.nombre, a.idAlumno, e.marca, e.idEquipo from alumnos as a inner join equipos as e using(idEquipo);";
+        String consulta = "Select a.nombre, a.apellidos, e.marca, e.idEquipo from alumnos as a inner join equipos as e using(idEquipo);";
 
         try {
             Statement sentencia = ConnectionFactory.getConnection().createStatement();
@@ -84,7 +84,7 @@ public class AlumnosDAO implements IAlumnosDAO {
             while (resultado.next()) {
                 Alumno alumno = new Alumno();
                 alumno.setNombre(resultado.getString("nombre"));
-                alumno.setGrupo(resultado.getString("idAlumno"));
+                alumno.setApellidos(resultado.getString("apellidos"));
                 lista.add(alumno);
             }
 
@@ -100,7 +100,7 @@ public class AlumnosDAO implements IAlumnosDAO {
 
     @Override
     public void insertarAlumno(Alumno alumno) {
-        String consulta = "insert into alumnos (nombre, apellidos, nif, fechaNacimiento, sexo, email, idEquipo) values (?,?,?,?,?,?,?)";
+        String consulta = "insert into alumnos (nombre, apellidos, nif, fechaNacimiento, sexo, email) values (?,?,?,?,?,?,?)";
 
         try {
 
@@ -110,9 +110,7 @@ public class AlumnosDAO implements IAlumnosDAO {
             sentencia.setString(2, alumno.getApellidos());
             sentencia.setString(3, alumno.getNif());
             sentencia.setDate(4, alumno.getFechaNacimiento());
-            sentencia.setString(5, alumno.getSexo());
             sentencia.setString(6, alumno.getEmail());
-            sentencia.setInt(7, alumno.getIdEquipo());
             sentencia.executeUpdate();
 
             sentencia.close();
@@ -125,14 +123,17 @@ public class AlumnosDAO implements IAlumnosDAO {
 
     @Override
     public void actualizarAlumno(Alumno alumno) {
-        String consulta = "uptade alumnos set nombre=?, apellidos=?, idEquipo=? where idAlumno=?";
+        String consulta = "uptade alumnos set nombre=?, apellidos=?, nif=?, fechaNacimiento=?, sexo=?, email=? where idAlumno=?";
 
         try {
             PreparedStatement sentencia = ConnectionFactory.getConnection().prepareStatement(consulta);
 
             sentencia.setString(1, alumno.getNombre());
             sentencia.setString(2, alumno.getApellidos());
-            sentencia.setInt(3, alumno.getIdEquipo());
+            sentencia.setString(3, alumno.getNif());
+            sentencia.setDate(4, alumno.getFechaNacimiento());
+            //sentencia.setString(5, alumno.getSexo());
+            sentencia.setString(6, alumno.getEmail());
 
             sentencia.executeUpdate();
 
@@ -154,9 +155,8 @@ public class AlumnosDAO implements IAlumnosDAO {
             sentencia.setString(2, alumno.getApellidos());
             sentencia.setString(3, alumno.getNif());
             sentencia.setDate(4, alumno.getFechaNacimiento());
-            sentencia.setString(5, alumno.getSexo());
+            //sentencia.setString(5, alumno.getSexo());
             sentencia.setString(6, alumno.getEmail());
-            sentencia.setInt(7, alumno.getIdEquipo());
 
             sentencia.executeUpdate();
 
@@ -183,9 +183,8 @@ public class AlumnosDAO implements IAlumnosDAO {
                 alumno.setApellidos(resultado.getString("apellidos"));
                 alumno.setNif(resultado.getString("nif"));
                 alumno.setFechaNacimiento(resultado.getDate("fechaNacimiento"));
-                alumno.setSexo(resultado.getString("sexo"));
+                //alumno.setSexo(resultado.getString("sexo"));
                 alumno.setEmail(resultado.getString("email"));
-                alumno.setIdEquipo(resultado.getByte("idEquipo"));
             }
 
             resultado.close();

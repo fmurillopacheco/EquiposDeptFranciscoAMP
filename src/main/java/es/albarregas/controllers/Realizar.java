@@ -42,12 +42,14 @@ public class Realizar extends HttpServlet {
         HttpSession sesion = request.getSession();
         Alumno alum = new Alumno();
         Equipo equipo = new Equipo();
-        alum.setNombre(request.getParameter("nombreAlum"));
-        alum.setGrupo(request.getParameter("grupoAlum"));
+        alum.setNombre(request.getParameter("nombre"));
+        alum.setApellidos(request.getParameter("apellidos"));
+        alum.setNif(request.getParameter("nif"));
+//        alum.setFechaNacimiento(request.getParameter("fecha"));       
 
         DAOFactory daof = DAOFactory.getDAOFactory(1);
         IAlumnosDAO idao = daof.getAlumnosDAO();
-        equipo.setIdEquipo((byte) Integer.parseInt(request.getParameter("equipoAlumno")));
+        equipo.setIdEquipo((short) Integer.parseInt(request.getParameter("equipoAlumno")));
 
 
         idao.insertarAlumno(alum);
@@ -60,8 +62,9 @@ public class Realizar extends HttpServlet {
     
     public void modificarAlumno(HttpServletRequest request, HttpServletResponse response){
         Alumno alum = new Alumno();
-        alum.setNombre(request.getParameter("nombreAlum"));
-        alum.setGrupo(request.getParameter("grupoAlum"));
+        alum.setNombre(request.getParameter("nombre"));
+        alum.setApellidos(request.getParameter("apellidos"));
+        alum.setNif(request.getParameter("nif"));
         
         DAOFactory daof = DAOFactory.getDAOFactory(1);
         IAlumnosDAO idao = daof.getAlumnosDAO();
