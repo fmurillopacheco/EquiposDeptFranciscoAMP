@@ -137,5 +137,116 @@ mysql> 	CREATE TABLE grupos(
 	alter table alumnos add FOREIGN KEY (idGrupo) references grupos(idGrupo);                                                           
 
 	alter table alumnos add FOREIGN KEY (idEquipo) references equipos(idEquipo);
+	
++-----------------+-------------+------+-----+---------+----------------+
+| Field           | Type        | Null | Key | Default | Extra          |
++-----------------+-------------+------+-----+---------+----------------+
+| idAlumno        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre          | varchar(15) | NO   |     | NULL    |                |
+| apellidos       | varchar(30) | NO   |     | NULL    |                |
+| idGrupo         | tinyint(4)  | NO   | MUL | NULL    |                |
+| nif             | char(9)     | NO   |     | NULL    |                |
+| fechaNacimiento | date        | NO   |     | NULL    |                |
+| sexo            | char(1)     | NO   |     | NULL    |                |
+| email           | varchar(50) | NO   |     | NULL    |                |
+| idEquipo        | smallint(6) | YES  | MUL | NULL    |                |
++-----------------+-------------+------+-----+---------+----------------+
  ``` 
-  
+*** Estructura del Proyecto.***
+
+Una vez creadas la tablas, vamos a proceder a la creación de la estructura del proyecto.
+
+Dentro de Web Pages tenemos el index.html donde va a ir el menú.
+
+Creamos los directorios:
+- CSS -> Donde se ubican los archivos de estilos, constituidos en un principos por los archivos:
+- equiposDeptStyle.css,
+- error404.css,
+- error500.css
+que es donde van los estilos de todas las páginas del proyecto y las páginas de error.
+- IMG -> Con los archivos png de los errores y otras imagenes relacionadas con el diseño web.
+- INC -> Aquí se ubica el archivo metas.inc, donde ván todas las referencias SEO del proyecto. Se hará referencia en todos los archivos jsp del proyecto.
+- JSP -> En esta carpeta se ubican las páguina JSP del proyecto. En nuestro caso crearémos las carpetas actualizar, eliminar, insertar y visualizar, conteniendo carpetas denominadas alumno, equipo y grupo. Paso a relacionar el contenido de cada una de las carpetas:
+- actualizar --> alumno, equipo y grupo. En su interior contiene las páginas JSP:
+	- actualizar.jsp
+	- leeActualizar.jsp
+	- finActualizar.jsp
+- eliminar --> alumno, equipo y grupo. En su interior contiene las páginas JSP:
+	- eliminar.jsp
+	- leeEliminar.jsp
+	- finEliminar.jsp
+- insertar --> alumno, equipo y grupo. En su interior contiene las páginas JSP:
+	- insertar.jsp
+	- leeInsertar.jsp
+- visualizar -->Contiene las distintas salidas:
+	- visualizarAlumSinEquip.jsp
+	- visualizarAlumYEquip.jsp
+	- visualizarAlumYEquipAsociado.jsp
+	- visualizarAlumnos.jsp
+	- visualizarEquipos.jsp
+	- visualizarGrupos.jsp
+
+En al carpeta META-INF, dentro del archivo context.xml configuramos la conexión a la base de datos, configurando los parámetros de conexión:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/EquiposDeptFranciscoAMP">
+    <Resource
+        name="jdbc/EquiposDept"
+        auth="Container"
+        type="javax.sql.DataSource"
+        maxActive="100"
+        maxIdle="30"
+        maxWait="10000"
+        username="java2020"
+        password="2020"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/EquiposDept?autoReconnect=true"   
+     />
+</Context>
+
+Se configura el archivo web.xml, donde están los parámetros de configuración de las paginas de error y otras configuraciones.
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	 version="3.1">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <error-page>
+        <error-code>500</error-code>
+            <location>/JSP/errores/error500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+           <location>/JSP/errores/error404.jsp</location>
+    </error-page>
+</web-app>
+
+En Source Packages,los paquetes:
+
+	- es.albarregas.DAO, dentro del cual se crean las 	clases e Interfaces:
+		- AlumnosDAO.java,
+		- ConnectionFactory.java
+		- EquiposDAO.java
+		- GruposDAO.java
+		- IAlumnosDAO.java
+		- IEquiposDAO.java
+		- IGruposDAO.java
+
+	- es.albarregas.beans, dentro se crean las clases 	Serializables:
+		- Alumno.java
+		- Equipo.java
+		- Grupo.java
+
+	- es.albarregas.controllers, donde se crearán los 	controladores de la aplicación, los Servlets 		- Operacion.java
+		- Realizar.java
+
+	- es.albarregas.utilities, donde situaremos la 	Clase de utiliada para la alfebetización:
+		. UTF8.java
+ 
