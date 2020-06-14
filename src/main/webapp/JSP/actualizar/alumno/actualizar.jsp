@@ -63,8 +63,8 @@
                     <label for="avatar">Por favor selecciona tu avatar:</label>
                     <input type="file" class="form-control-file border" name="avatar" value="${usuario.avatar}">
                 </div>
-                <button type="submit" value="cancelar" name="operacion">Cancelar</button>
-                <button id="insertar" type="submit" value="insertarUsuario" name="operacion">Actualizar usaurio</button> 
+                <button class="btn btn-info" type="submit" value="cancelar" name="operacion">Cancelar</button>
+                <button class="btn btn-info" id="insertar" type="submit" value="insertarUsuario" name="operacion">Actualizar usaurio</button> 
 
     
             </form>

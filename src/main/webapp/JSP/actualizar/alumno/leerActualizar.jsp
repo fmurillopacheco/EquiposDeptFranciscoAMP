@@ -16,7 +16,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <%@include file="/INC/metas.inc"%>
-<!--        <link rel="stylesheet" type="text/css" href="CSS/gestionImgenesStyle.css">-->
+
         <title>Actualizar usuarios: </title>
     </head>
     <body>
@@ -28,8 +28,8 @@
             </c:forEach>
             <br><br>
 
-            <button type="submit" value="cancelar" name="operacion">Cancelar</button>
-            <button id="actualizar" type="submit" value="aceptarActualizar" name="operacion">Actualizar</button>
+            <button class="btn btn-info" type="submit" value="cancelar" name="operacion">Cancelar</button>
+            <button class="btn btn-info" id="actualizar" type="submit" value="aceptarActualizar" name="operacion">Actualizar</button>
         </form>
     </body>
 </html>

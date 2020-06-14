@@ -3,6 +3,8 @@
     Created on : 10-jun-2020, 13:52:18
     Author     : Francisco_Antonio
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -54,8 +56,8 @@
                 </select>
                 </div> 
 
-                <button type="submit" value="cancelar" name="operacion">Cancelar</button>
-                <button id="insertar" type="submit" value="insertarUsuario" name="operacion">Actualizar usaurio</button> 
+                <button class="btn btn-info" type="submit" value="cancelar" name="operacion">Cancelar</button>
+                <button class="btn btn-info" id="insertar" type="submit" value="insertarUsuario" name="operacion">Actualizar usaurio</button> 
 
     
             </form>

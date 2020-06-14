@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="CSS/equiposDeptStyle.css">
+        <title>Men&uacute; Gesti&oacute;n de Alumnos-Equipos-Grupos.</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="jumbotron text-center">
+            <h1>Men&uacute; Gesti&oacute;n de Alumnos-Equipos-Grupos.</h1>
+            <h3>by Francisco Antonio Murillo Pacheco</h3>
+        </div>
+  
+        <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>Altas</h3>        
+                <ol class="list-unstyled">
+                    <li> <a href="JSP/insertar/alumno/insertar.jsp">Alta de alumnos.</a></li>
+                    <li> <a class="disabled" href="JSP/insertar/equipo/leerInsertar.jsp">Alta de Grupos.</a></li>
+                    <li> <a class="disabled" href="JSP/insertar/grupo/leerInsertar.jsp">Alta de Equipos.</a></li>
+                </ol>
+            </div>
+            <div class="col-sm-3">
+                <h3>Modificaciones</h3>        
+                <ol class="list-unstyled">
+                    <li> <a class="disabled" href="JSP/actualizar/alumno/leerActualizar.jsp">Modificaci&oacute;n de alumnos.</a></li>
+                    <li> <a class="disabled" href="JSP/actualizar/equipo/leerActualizar.jsp">Modificaci&oacute;n de Grupos.</a></li>
+                    <li> <a class="disabled" href="JSP/actualizar/grupo/leerActualizar.jsp">Modificaci&oacute;n de equipos.</a></li>
+                </ol>
+            </div>
+            <div class="col-sm-3">
+                <h3>Eliminar</h3>        
+                <ol class="list-unstyled">
+                    <li> <a class="disabled" href="JSP/eliminar/alumno/leerEliminar.jsp">Eliminar alumnos.</a></li>
+                    <li> <a class="disabled" href="JSP/eliminar/equipo/leerEliminar.jsp">Eliminar Grupos.</a></li>
+                    <li> <a class="disabled" href="JSP/eliminar/grupo/leerEliminar.jsp">Eliminar Equipos.</a></li></ol>
+            </div>
+            <div class="col-sm-3">
+                <h3>Listados</h3>        
+                <ol class="list-unstyled">
+                    <li> <a href="JSP/visualizar/visualizarAlumnos.jsp">Visualizar Alumnos.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/visualizarEquipos.jsp">Visualizar Equipos.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/visualizarGrupos.jsp.jsp">Visualizar Grupos.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/visualizarAlumYEquipAsociados.jsp">Visualizar Alumnos y Equipos Asociados.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/visualizarAlumYEquip.jsp">Visualizar Alumnos por Equipo.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/">Visualizar Alumnos por Grupo.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/visualizarAlumSinEquip.jsp">Visualizar Alumnos sin Equipo Asignado.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/">Visualizar Equipos sin Alumno Asociado.</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/">Visualizar Alumnos (utilizando Ajax).</a></li>
+                    <li> <a class="disabled" href="JSP/visualizar/">Visualizar todos los datos.</a></li>
+                </ol>
+            </div>
+  </div>
+</div>
     </body>
 </html>
